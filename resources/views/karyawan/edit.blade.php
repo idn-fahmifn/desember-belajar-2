@@ -35,24 +35,25 @@
 
 
 
-    <form action="{{route('karyawan.store')}}" method="post">
+    <form action="{{route('karyawan.update', $data->id)}}" method="post">
         @csrf
+        {{method_field('PUT')}}
         <div class="form-group">
             <label for="">Nama Karyawan</label>
-            <input type="text" name="nama" required>
+            <input type="text" name="nama" value="{{$data->nama}}" required>
         </div>
         <div class="form-group">
             <label for="">NIK</label>
-            <input type="number" name="nik" required>
+            <input type="number" name="nik" value="{{$data->nik}}" required>
         </div>
         <div class="form-group">
             <label for="">Umur</label>
-            <input type="number" name="umur" required>
+            <input type="number" name="umur" value="{{$data->umur}}" required>
         </div>
         <div class="form-group">
             <label for="">Gender</label>
             <select name="gender" required>
-                <option value="">-Pilih Gender-</option>
+                <option value="{{$data->gender}}">{{$data->gender}}</option>
                 <option value="pria">Pria</option>
                 <option value="wanita">Wanita</option>
             </select>

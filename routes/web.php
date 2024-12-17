@@ -116,9 +116,19 @@ Route::prefix('karyawan')->group(function(){
 
     // halaman menampilkan form.
     Route::get('tambah-karyawan', [KaryawanController::class, 'create'])->name('karyawan.create');
-    
+
     // routing untuk mengirim halaman
     Route::post('kirim-karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
+
+    // Routing halaman edit
+    Route::get('edit-karyawan/{param}', [KaryawanController::class, 'edit'])->name('karyawan.edit');
+
+    // Routing update karyawan
+    Route::put('update-karyawan/{param}', [KaryawanController::class, 'update'])->name('karyawan.update');
+
+    //Route untuk hapus data
+    Route::delete('hapus-karyawan/{param}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
+
 
 
 });
