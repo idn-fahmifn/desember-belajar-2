@@ -107,11 +107,16 @@ Route::resource('biodata', BiodataController::class);
 Route::get('cetak', [BiodataController::class, 'cetak'])->name('cetak.biodata');
 
 Route::prefix('karyawan')->group(function(){
-    
+
     // halaman index untuk menampilkan semua data karyawan.
-    Route::get('data-karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');    
+    Route::get('data-karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
+
     // halaman detail untuk menampilkan data karyawan secara spesifik.
     Route::get('detail-karyawan/{param}', [KaryawanController::class, 'detail'])->name('karyawan.detail');
+    
+    // halaman menampilkan form.
+    Route::get('tambah-karyawan', [KaryawanController::class, 'create'])->name('karyawan.create');    
+
 
 });
 

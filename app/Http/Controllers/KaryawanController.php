@@ -18,4 +18,9 @@ class KaryawanController extends Controller
         $data = Karyawan::find($id); //menampilkan data secara spesifik.
         return view('karyawan.detail', compact('data')); //menampilkan halaman detail.
     }
+
+    public function create()
+    {
+        return view('karyawan.create');
+    }
 }
