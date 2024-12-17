@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Middleware\UmurMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -95,10 +97,26 @@ Route::prefix('umur')->group(function(){
         return redirect()->route('berhasil');
 
     })->name('proses-umur');
-
 });
-
 // Routing dengan controller.
 Route::get('barang', [BarangController::class, 'index'])->name('barang.index');
 Route::get('create-barang', [BarangController::class, 'create']);
+Route::post('kirim-data', [BarangController::class, 'store'])->name('kirim-barang');
+// controller resource.
+Route::resource('biodata', BiodataController::class);
+Route::get('cetak', [BiodataController::class, 'cetak'])->name('cetak.biodata');
+
+Route::prefix('karyawan')->group(function(){
+    
+    // halaman index untuk menampilkan semua data karyawan.
+    Route::get('data-karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');    
+    // halaman detail untuk menampilkan data karyawan secara spesifik.
+    Route::get('detail-karyawan/{param}', [KaryawanController::class, 'detail'])->name('karyawan.detail');
+
+});
+
+
+
+
+
 
