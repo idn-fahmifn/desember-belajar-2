@@ -113,9 +113,12 @@ Route::prefix('karyawan')->group(function(){
 
     // halaman detail untuk menampilkan data karyawan secara spesifik.
     Route::get('detail-karyawan/{param}', [KaryawanController::class, 'detail'])->name('karyawan.detail');
-    
+
     // halaman menampilkan form.
-    Route::get('tambah-karyawan', [KaryawanController::class, 'create'])->name('karyawan.create');    
+    Route::get('tambah-karyawan', [KaryawanController::class, 'create'])->name('karyawan.create');
+    
+    // routing untuk mengirim halaman
+    Route::post('kirim-karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
 
 
 });

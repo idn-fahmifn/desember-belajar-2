@@ -23,4 +23,23 @@ class KaryawanController extends Controller
     {
         return view('karyawan.create');
     }
+
+    public function store(Request $request)
+    {
+        // validasi data input 
+        $request->validate([
+            'nama' => 'string|required|min:2|max:50',
+            'umur' => 'integer|min:10|max:50|required',
+            'nik' => 'string|min:5|max:6|unique:karyawan|required'
+        ]);
+
+        // mengambil semua nilai yang diinputkan dari form
+        $input = $request->all();
+
+        //kirim data ke database, melalui model Karyawan
+        Karyawan::create($input);
+        return redirect()->route('karyawan.index');
+
+    }
+
 }

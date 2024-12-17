@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Karyawan</title>
+    <style>
+        .form-group{
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>Halaman Tambah Karyawan</h1>
 
-    <form action="#" method="post">
+    <form action="{{route('karyawan.store')}}" method="post">
         @csrf
         <div class="form-group">
             <label for="">Nama Karyawan</label>
@@ -34,6 +40,6 @@
             <button type="submit">Tambah Data</button>
         </div>
     </form>
-    
+
 </body>
 </html>
