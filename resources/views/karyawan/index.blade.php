@@ -1,55 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Karyawan</title>
+<!-- import template -->
+@extends('layouts.app')
 
-    <style>
-        .alert-success {
-            width: 100vw;
-            padding: 5px;
-            background-color: #00ff0080;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>Halaman Semua Karyawan</h1>
-
-    @if (session('berhasil'))
-    <div class="alert-success">
-        <h4>Berhasil!</h4>
-        <span>{{session('berhasil')}}</span>
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title">Halaman data karyawan</h4>
+                        <a href="#" class="btn btn-success">Tambah</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <th>Nama Karyawan</th>
+                                <th>NIK</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($data as $item)
+                                <tr>
+                                    <td><a href="{{route('karyawan.detail', $item->id)}}" class="btn">{{$item->nama}}</a></td>
+                                    <td>{{$item->nik}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    @endif
-
-    <table>
-        <thead>
-            <th>Nama</th>
-            <th>Umur</th>
-            <th>Pilihan</th>
-        </thead>
-        <tbody>
-            @foreach ($data as $item)
-            <tr>
-                <td>{{$item->nama}}</td>
-                <td>{{$item->umur}}</td>
-                <td>
-                    <form action="{{route('karyawan.destroy', $item->id)}}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit">Hapus</button>
-                        <a href="{{route('karyawan.detail', $item->id)}}">Detail</a>
-                        <a href="{{route('karyawan.edit', $item->id)}}">Edit</a>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-</body>
-
-</html>
+</div>
+@endsection

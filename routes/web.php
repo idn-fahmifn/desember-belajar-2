@@ -6,6 +6,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Middleware\UmurMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 // localhost:8000/
 Route::get('/', function () {
@@ -138,3 +139,7 @@ Route::prefix('karyawan')->group(function(){
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

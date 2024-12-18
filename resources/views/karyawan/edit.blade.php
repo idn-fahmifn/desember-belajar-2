@@ -1,68 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Karyawan</title>
-    <style>
-        .form-group {
-            padding: 5px;
-            margin: 5px;
-        }
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title">Halaman Edit Karyawan</h4>
+                    </div>
 
-        .alert-error {
-            width: 100vw;
-            padding: 5px;
-            background-color: #ff000080;
-        }
-    </style>
-</head>
+                    <!-- form-input -->
+                    <form action="{{route('karyawan.update', $data->id)}}" method="post">
+                        @csrf
+                        {{method_field('PUT')}}
+                        <div class="form-group mt-3">
+                            <label for="">Nama Karyawan</label>
+                            <input type="text" class="form-control" name="nama" value="{{$data->nama}}" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="">NIK</label>
+                            <input type="number" class="form-control" name="nik" value="{{$data->nik}}" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="">Umur</label>
+                            <input type="number" class="form-control" name="umur" value="{{$data->umur}}" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="">Gender</label>
+                            <select class="form-control" name="gender" required>
+                                <option value="{{$data->gender}}">{{$data->gender}}</option>
+                                <option value="pria">Pria</option>
+                                <option value="wanita">Wanita</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-success">Tambah Data</button>
+                        </div>
+                    </form>
 
-<body>
-    <h1>Halaman Tambah Karyawan</h1>
-
-    @if ($errors->any())
-        <div class="alert-error">
-            <h5>Whoops, Ada error</h5>
-            <ol>
-                @foreach ($errors->all() as $item)
-                    <li>{{$item}}</li>
-                @endforeach
-            </ol>
+                </div>
+            </div>
         </div>
-    @endif
-
-
-
-    <form action="{{route('karyawan.update', $data->id)}}" method="post">
-        @csrf
-        {{method_field('PUT')}}
-        <div class="form-group">
-            <label for="">Nama Karyawan</label>
-            <input type="text" name="nama" value="{{$data->nama}}" required>
-        </div>
-        <div class="form-group">
-            <label for="">NIK</label>
-            <input type="number" name="nik" value="{{$data->nik}}" required>
-        </div>
-        <div class="form-group">
-            <label for="">Umur</label>
-            <input type="number" name="umur" value="{{$data->umur}}" required>
-        </div>
-        <div class="form-group">
-            <label for="">Gender</label>
-            <select name="gender" required>
-                <option value="{{$data->gender}}">{{$data->gender}}</option>
-                <option value="pria">Pria</option>
-                <option value="wanita">Wanita</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <button type="submit">Tambah Data</button>
-        </div>
-    </form>
-
-</body>
-
-</html>
+    </div>
+</div>
+@endsection
